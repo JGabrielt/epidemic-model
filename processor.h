@@ -1,18 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
     //typedef declaration
     typedef struct{
-        double S, I, R, tempo, b, h, k;
-    } dados;
+        double *S, *I, *R, *tempo;
+    } Dados;
 
-    dados* criarDado(double tempo); //Cria o dado
+    Dados* inicializarDados(int duracao, double h); //Aloca o espaço para o dados
 
-    double facilidadeDeContagio(int N_b, int T_b, int S_b, int I_b); // calcula a facilidade de contágio
+    void SIR(Dados* d); //Calcula e guarda os dados nos vetores
 
-    void calcDado(dados* d); // Calcula os dados de transmissão
+    double* entradaParametros(); //Recebe os parametros de um arquivo .csv
 
-    
+    void escreverDados(Dados* d, int duracao); //Escreve os dados num arquivo .csv
 
 
 #endif //PROCESSOR_H_INCLUDED

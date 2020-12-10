@@ -1,31 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "processor.h"
  
- 
 int main(void) {
-    dados* d = criarDado(0);
- 
-    double N_b, T_b, S_b, I_b, m_k, n_k, T_k;
-    int dias;
-    FILE* input_data = fopen("entrada.csv", "r");
-    //scanf("%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%d", &d->S, &d->I, &d->R, &d->h, &N_b, &T_b, &S_b, &I_b, &m_k, &n_k, &T_k, &dias); Entrada de dados separados por virgula pelo terminal
-    fscanf(input_data,"%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%d", &d->S, &d->I, &d->R, &d->h, &N_b, &T_b, &S_b, &I_b, &m_k, &n_k, &T_k, &dias); //Entrada de dados num arquivo csv, separadas por virgula
-    fclose(input_data);
-    int duracao = dias * 24;
- 
-    d->b = facilidadeDeContagio(N_b, T_b, S_b, I_b);
-    d->k = probabilidadeDeCura(m_k, n_k, T_k);
- 
-    FILE* saida = fopen("saida.csv", "w");
-    while(d->tempo <= duracao)
+    Dados* d;
+    SIR(d);
+    /* double* parametros = entradaParametros();
+    for(int i = 0; i < 12; i++)
     {
-        printf("%lf, %lf, %lf, %lf\n", d->S, d->I, d->R, d->tempo); //Saida no terminal
-        fprintf(saida, "%lf, %lf, %lf, %lf\n", d->S, d->I, d->R, d->tempo); //Escrita no arquivo saida.csv 
-        calcDado(d);
-    }
-    printf("%lf, %lf, %lf, %lf\n", d->S, d->I, d->R, d->tempo); 
-    fprintf(saida, "%lf, %lf, %lf, %lf\n", d->S, d->I, d->R, d->tempo); //Ultimo valor não estava sendo impresso
+        printf("%lf\n", parametros[i]);
+    } */
  
     return 0;
 }

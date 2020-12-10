@@ -2,13 +2,9 @@
 #include <stdlib.h>
 #include "processor.h"
  
-typedef struct
-{
-    double S, I, R, tempo, b, h, k;
-} Dado;
  
 int main(void) {
-    Dado* d = criarDado(0);
+    dados* d = criarDado(0);
  
     double N_b, T_b, S_b, I_b, m_k, n_k, T_k;
     int dias;

@@ -72,12 +72,10 @@ void simulacaoSIR(Dados* d, int cenario)
         if(cenario == 2 && i == t) //Cenario 2: T_b(p[5]) aumenta após 4 dias, soma-se 24h ao tempo de contaminação T_b
         {
             b = (p[4] / ((double)((p[5] + 24) * p[6] * p[7]))); //Cenario 3: T_k(p[10]) diminui após 4 dias, redução de 12h ao tempo de recuperação T_k
-            printf("b");
         }
         else if(cenario == 3 && i == t)
         {
             k = (p[8] / ((double)(p[9] * (p[10] - 8))));
-            printf("k");
         }
         double oldS = d->S[i-1], oldI = d->I[i-1], oldR = d->R[i-1];
         d->S[i] = (oldS - (p[3] * b * oldS * oldI));

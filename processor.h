@@ -15,7 +15,7 @@
 
     double* entradaParametros(); //Recebe os parametros de um arquivo .csv
 
-    void escreverDados(Dados* d, int duracao); //Escreve os dados das 3 simulações em 3 arquivos .csv
+    void escreverDados(Dados* d, int duracao); //Escreve os dados da simulação escolhida
 
 
 #endif //PROCESSOR_H_INCLUDED

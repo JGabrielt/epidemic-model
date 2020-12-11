@@ -1,8 +1,11 @@
 #include "processor.h"
  
 int main(void) {
-    Dados *d1, *d2, *d3;
-    simulacaoSIR(d1, d2, d3);
+    Dados* d;
+    int cenario;
+    printf("Entre numero do cenario desejado: \n");
+    scanf("%d", &cenario);
+    simulacaoSIR(d, cenario);
  
     return 0;
 }

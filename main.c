@@ -7,7 +7,6 @@ int main(void) {
     printf("1° Scenario: Nothing is done\n");
     printf("2° Scenario: Distancing and wear masks\n");
     printf("3° Scenario: Improvement in service protocols\n");
-    printf("4° Scenario: Distancing, wear masks and improvment in service protocols\n");
     scanf("%d", &cenario);
     simulacaoSIR(d, cenario);
  

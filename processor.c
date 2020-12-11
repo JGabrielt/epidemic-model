@@ -97,14 +97,14 @@ void simulacaoSIR(Dados* d1, Dados* d2, Dados* d3)
         d1->R[i] = (oldR + (p[3] * k * oldI));
         d1->tempo[i] = d1->tempo[i-1] + p[3];
     }
-    //Cenario 2: T_b(p[5]) aumenta após 5 dias, soma-se 12h ao tempo de contaminação T_b
+    //Cenario 2: T_b(p[5]) aumenta após 7 dias, soma-se 24h ao tempo de contaminação T_b
     i = 0;
     while(d2->tempo[i] <= duracao)
     {
         i++;
         if(d2->tempo[i] == 120)
         {
-            b = (p[4] / ((double)((p[5] + 12) * p[6] * p[7])));
+            b = (p[4] / ((double)((p[5] + 24) * p[6] * p[7])));
         }
         double oldS = d2->S[i-1], oldI = d2->I[i-1], oldR = d2->R[i-1];
         d2->S[i] = (oldS - (p[3] * b * oldS * oldI));
@@ -112,7 +112,7 @@ void simulacaoSIR(Dados* d1, Dados* d2, Dados* d3)
         d2->R[i] = (oldR + (p[3] * k * oldI));
         d2->tempo[i] = d2->tempo[i-1] + p[3];
     }   
-    //Cenario 3: T_k(p[10]) diminui após 5 dias, redução de 8h ao tempo de recuperação T_k
+    //Cenario 3: T_k(p[10]) diminui após 7 dias, redução de 12h ao tempo de recuperação T_k
     i = 0;
     b = (p[4] / ((double)(p[5] * p[6] * p[7]))); //Valor de b de volta ao original
     while(d3->tempo[i] <= duracao)

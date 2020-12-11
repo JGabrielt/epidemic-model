@@ -5,11 +5,21 @@ Projeto final da disciplina de Introdução as técnicas de programação.
 
 Final project of the discipline Introduction to Programming Techniques.
 
+## Autores / Authors
+- [Enzo Lopes D'anjour de Souza](https://github.com/enzodanjour)
+- [João Gabriel Trindade Barreto da Silva](https://github.com/JGabrielt)
+
 ### Checkpoints
 #### Checkpoint 1
 - [x] Implementação do modelo com entrada e saída no terminal.
 - [x] Formato de dados do arquivo csv de configuração e leitura do arquivo de configuração.
-- [x] Saída de dados no arquivo de csv (+25% do checkpoint)
+- [x] Saída de dados no arquivo de csv (+25% do checkpoint).
+
+#### Checkpoint 2
+- [x] Implementação dos cenários de simulação e formato de dados do arquivo txt
+de configuração e leitura do arquivo de configuração.
+- [x] Plotagem dos gráficos dos três cenários em função do arquivo de entrada.
+- [x] Entrega das modificações sugeridas no CP1.
 
 ### Propósito / Purpose
 São utilizados para a compreensão da dinâmica de uma epidemia ou afim, e são,portanto,ferramentas essenciais na determinação de políticas públicas para combate e prevenção de doenças 
@@ -27,7 +37,7 @@ Primeiro de tudo, devemos compilar os arquivos que serão utilizados, para isso 
 First of all, we must compile the files that will be used, for that run the command in the terminal.
 
 `` 
-gcc main.c -o epidemic
+make all
 ``
 
 O próximo passo é executar o binário fruto da compilação.
@@ -41,84 +51,70 @@ The next step is to run the compilation binary.
 ./epidemic
 ``
 
+### Como escrever um modelo para entrada de dados / How write a model to input data
+
+Para fazer isso precisamos entrar com um arquivo .csv passando como parâmetros, respectivamente:
+
+/
+
+To do this we need to enter a .csv file passing as parameters, respectively:
+
+S= Quantidade de indivíduos suscetíveis
+
+I= Numero de indivíduos infectados
+
+R= Número de indivíduos com imunidade ou faleceram.
+
+h= intervalo de tempo em horas.
+
+N= Quantidade de indivíduos infectados.
+
+T= Intervalo de tempo.
+
+S0= número de pessoas suscetíveis no início da observação
+
+I0= número de pessoas infectadas no início da observação.
+
+m= Quantos indivíduos se recuperaram.
+
+n= Quantos indivíduos se contaminaram de um total.
+
+T'= Intervalo de tempo para parâmetro k.
+
+/
+
+S = Number of susceptible individuals
+
+I = Number of infected individuals
+
+R = Number of individuals with immunity or who died.
+
+h = time interval in hours.
+
+N = Number of infected individuals.
+
+T = Time interval.
+
+S0 = number of susceptible people at the beginning of the observation
+
+I0 = number of people infected at the beginning of the observation.
+
+m = How many individuals have recovered.
+
+n = How many individuals have been contaminated out of a total.
+
+T '= Time interval for parameter k.
 
 
-## Struct
-`` 
-typedef struct
-{
-    double S, I, R, tempo, b, h, k;
-} Dado;
-``
+Exemplo / Example:
 
-## Alocação
-Em cima dos números de dias será alocado o tamanho
-``
-Dado* criarDado(double tempo)
-{
-    Dado* dado = malloc(sizeof(Dado));
-    dado->tempo = tempo; 
-    return dado;
-}
-``
+68,2,0,0.1,12,24,50,10,6,22,24,21 
 
-## Functions
+and generate a file saida.csv
 
-### Facilidade de contágio
-Inputs:
-output:
 
-`` 
-double facilidadeDeContagio(int N_b, int T_b, int S_b, int I_b) 
-{ 
-    return (N_b / ((double)(T_b * S_b * I_b)));
-} 
-``
+### Como plotar gráficos / Plotting Charts
 
-### Probabilidade de cura
+Use o script em Modelo_plotagem.ipynb.
 
-``
-double probabilidadeDeCura(int m_k, int n_k, int T_k) 
-{ 
-    return (m_k / ((double)(n_k * T_k)));
-}
-``
-### Calculo de Suceptível
-
-``
-double calcSuscetivel(Dado* d)
-{
-    double oldS, oldI;
-    oldS = d->S;
-    oldI = d->I;
-    return (oldS - (d->h * d->b * oldS * oldI));
-}
-``
-### Infectado
-``
-double calcInfectado(Dado* d)
-{
-    double oldS, oldI;
-    oldS = d->S;
-    oldI = d->I;
-    return (oldI + (d->h * ((d->b * oldS * oldI) - (d->k * oldI))));
-}
-``
-
-## Crescimento
-
-temos uma função onde aproveita os dados que vai crescendo
-
-``
-void calcDado(Dado* d)
-{
-    Dado* novoDado = criarDado(d->tempo + d->h);
-    novoDado->S = calcSuscetivel(d);
-    novoDado->I = calcInfectado(d);
-    novoDado->R = calcRemovido(d);
-    d->S = novoDado->S;
-    d->I = novoDado->I;
-    d->R = novoDado->R;
-    d->tempo = novoDado->tempo; 
-}
-``
+Use script in Modelo_plotagem.ipynb to ploting the charts.

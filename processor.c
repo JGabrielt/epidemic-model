@@ -66,6 +66,20 @@ void SIR(Dados* d)
     while(d->tempo[i] <= duracao) // !!! Não imprime o ultimo instante !!!
     {
         i++;
+        /** primeiro cenário
+        if(i == 100){
+            //equivale a metade
+            b= b - 0.0005;
+            printf("%lf %lf\n",b,k);
+        }
+        */
+       /** segundo cenário
+        if(i == 100){
+            //equivale a metade
+            k = k + 0.005;
+            printf("%lf %lf\n",b,k);
+        }
+        */
         double oldS = d->S[i-1], oldI = d->I[i-1], oldR = d->R[i-1];
         d->S[i] = (oldS - (p[3] * b * oldS * oldI));
         d->I[i] = (oldI + (p[3] * ((b * oldS * oldI) - (k * oldI))));

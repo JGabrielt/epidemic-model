@@ -1,5 +1,6 @@
-all:
-		gcc main.c processor.c -o main
+all:	
+		clear
+		gcc main.c processor.c -o epidemic
 
 clean:
-		rm -f main
+		rm -f epidemic
